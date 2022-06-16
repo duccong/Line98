@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>layouts/StartGame.qml</file>
+        <file>res/bkg.bmp</file>
+        <file>layouts/InGame.qml</file>
+        <file>utils/Button.qml</file>
+    </qresource>
+</RCC>
