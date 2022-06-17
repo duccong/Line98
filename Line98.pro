@@ -20,12 +20,3 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-DISTFILES += \
-    res/ball_blue.png \
-    res/ball_blue_light.png \
-    res/ball_green.png \
-    res/ball_green_light.png \
-    res/ball_red.png \
-    res/ball_red_light.png \
-    res/ball_white_light.png \
-    res/ball_yellow.png \

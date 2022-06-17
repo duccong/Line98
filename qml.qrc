@@ -7,5 +7,13 @@
         <file>utils/Button.qml</file>
         <file>utils/Ball.qml</file>
         <file>utils/Nulo.qml</file>
+        <file>res/ball_blue.png</file>
+        <file>res/ball_blue_light.png</file>
+        <file>res/ball_green.png</file>
+        <file>res/ball_green_light.png</file>
+        <file>res/ball_red.png</file>
+        <file>res/ball_red_light.png</file>
+        <file>res/ball_white_light.png</file>
+        <file>res/ball_yellow.png</file>
     </qresource>
 </RCC>

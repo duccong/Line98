@@ -4,7 +4,7 @@ Item{
     id: root
     height: 0
     width: 0
-    visible: ccfLoader.isEnableNulo
+    // visible: ccfLoader.isEnableNulo
 
     property string color: randomColor
     property string text: ""
