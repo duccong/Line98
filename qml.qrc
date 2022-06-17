@@ -15,5 +15,6 @@
         <file>res/ball_red_light.png</file>
         <file>res/ball_white_light.png</file>
         <file>res/ball_yellow.png</file>
+        <file>MyScript.js</file>
     </qresource>
 </RCC>

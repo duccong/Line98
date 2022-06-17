@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQml 2.12
 import "layouts"
+import "MyScript.js" as MyScript
 Window {
     width: 630
     height: 710

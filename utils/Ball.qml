@@ -1,5 +1,5 @@
 import QtQuick 2.0
-
+import "../MyScript.js" as MyScript
 Item {
     id: ball
 
@@ -22,8 +22,15 @@ Item {
         sourceSize.width: 40
         sourceSize.height: 40
         y: 25 // 70 - 40
-        source: "qrc:/res/ball_blue.png"
+        source: MyScript.getPathBall(ballValue)//"qrc:/res/ball_blue.png"
         state: ballStateName
+
+        Text {
+            id: ballText
+            text: (ball.ballValue)
+            anchors.centerIn: parent
+        }
+
         states: [
             State {
                 name: "IDLE"
@@ -45,7 +52,9 @@ Item {
                 to: "SELECTED"
                 // reversible: true
                 SequentialAnimation {
+                    id: sqAnim
                     loops: Animation.Infinite
+                    property int duration: 500
 
                     // NumberAnimation {
                         // target: imgBall
@@ -62,7 +71,7 @@ Item {
                             property: "y"
                             from: 25
                             to: 10 // 50/2
-                            duration: 1000
+                            duration: sqAnim.duration
                             easing.type: Easing.InOutQuad
                         }
 
@@ -71,7 +80,7 @@ Item {
                             property: "width"
                             from: 50
                             to: 40
-                            duration: 1000
+                            duration: sqAnim.duration
                             easing.type: Easing.InOutQuad
                         }
                     }
@@ -82,7 +91,7 @@ Item {
                             property: "y"
                             from: 10
                             to: 25 // 50/2
-                            duration: 1000
+                            duration: sqAnim.duration
                             easing.type: Easing.InOutQuad
                         }
 
@@ -91,7 +100,7 @@ Item {
                             property: "width"
                             from: 40
                             to: 50
-                            duration: 1000
+                            duration: sqAnim.duration
                             easing.type: Easing.InOutQuad
                         }
                     }
@@ -114,7 +123,7 @@ Item {
         anchors.fill: parent
         onClicked: {
             ball.clicked("")
-            ballState = ballState ? 0 : 1
+            // ballState = ballState ? 0 : 1
         }
     }
 
