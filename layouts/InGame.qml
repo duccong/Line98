@@ -29,7 +29,19 @@ Item {
                             , Math.max(0,Math.floor((mouseY )/ 70))
                             , " - c = "
                             , Math.max(0,Math.floor((mouseX )/ 70)))
-                findShortestPath(1, 9)
+                let from = 0
+                let to = 24
+                let track = findShortestPath(from, to)
+                if (track.length > 0) {
+                    let tmpPos = to
+                    while (track[tmpPos] !== tmpPos) {
+                        // ballModel.itemAt(tmpPos).ballValue = 1
+                        tmpPos = track[tmpPos]
+                    }
+                    animPos.toX = (to % 9) * 70
+                    animPos.toY = Math.floor(to / 9) * 70
+                    animPos.start()
+                }
             }
         }
 
@@ -51,6 +63,46 @@ Item {
 
             }
         }
+
+        Ball {
+            id: runningBall
+            visible: true //ballValue !== -1
+            x: 0 //(index % 9) * 70
+            y: 0 //Math.floor(index / 9) * 70
+            ballValue: 1 //x == y ? 1 : -1
+            // Nulo {
+
+            // }
+            Component.onCompleted: {
+                // ballState = _SELECTED
+            }
+
+
+            ParallelAnimation {
+                id: animPos
+                property int toX: 0
+                property int toY: 0
+                NumberAnimation {
+                    id: animX
+                    target: runningBall
+                    property: "x"
+                    to: animPos.toX
+                    duration: 1000
+                    easing.type: Easing.InOutQuad
+                }
+
+                NumberAnimation {
+                    id: animY
+                    target: runningBall
+                    property: "y"
+                    duration: 1000
+                    to: animPos.toY
+                    easing.type: Easing.InOutQuad
+                }
+
+            }
+        }
+
     }
 
     function findShortestPath(from, to) {
@@ -97,13 +149,13 @@ Item {
                 }
 
                 tmpPos = tmpY + tmpX * 9
-                console.log("tmpPosX: ", tmpX, ",", tmpY, " >> ", ballModel.itemAt(tmpPos).ballValue)
+                // console.log("tmpPosX: ", tmpX, ",", tmpY, " >> ", ballModel.itemAt(tmpPos).ballValue)
                 if (ballModel.itemAt(tmpPos).ballValue === -1) {
                     let alt = distances[minVal] + 1
-                    console.log("visited(",tmpPos,") = ", visited[tmpPos])
+                    // console.log("visited(",tmpPos,") = ", visited[tmpPos])
                     if (visited[tmpPos] === 0) {
                         pq.push(tmpPos)
-                        console.log("Pushed", tmpPos)
+                        // console.log("Pushed", tmpPos)
                         // ballModel.itemAt(tmpPos).ballValue = 1
                         visited[tmpPos] = 1
                         distances[tmpPos] = alt
@@ -123,14 +175,21 @@ Item {
         }
 
         console.log(">>> END: found: ", found)
-        if (found) {
-            tmpPos = to
-            while (prev[tmpPos] !== tmpPos) {
-                ballModel.itemAt(tmpPos).ballValue = 1
-                tmpPos = prev[tmpPos]
-            }
-            ballModel.itemAt(tmpPos).ballValue = 1
+        if (!found) {
+            prev.length = 0
         }
+        console.log(">>> END: prevTrack: ", prev.length)
+
+        return prev
+
+        // if (found) {
+            // tmpPos = to
+            // while (prev[tmpPos] !== tmpPos) {
+                // ballModel.itemAt(tmpPos).ballValue = 1
+                // tmpPos = prev[tmpPos]
+            // }
+            // ballModel.itemAt(tmpPos).ballValue = 1
+        // }
 
     }
 
