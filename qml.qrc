@@ -5,5 +5,7 @@
         <file>res/bkg.bmp</file>
         <file>layouts/InGame.qml</file>
         <file>utils/Button.qml</file>
+        <file>utils/Ball.qml</file>
+        <file>utils/Nulo.qml</file>
     </qresource>
 </RCC>
