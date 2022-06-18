@@ -62,6 +62,8 @@ Item {
         anchors.top: title.bottom
         anchors.topMargin: parent.height / 4
         anchors.horizontalCenter: parent.horizontalCenter
+
+        objectName: "Start game"
         textbtn: "Start game"
 
         onClicked: {

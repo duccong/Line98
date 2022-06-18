@@ -111,7 +111,7 @@ Item {
                 visible: ballValue !== -1 && index !== fromPos
                 x: (index % 9) * 70
                 y: Math.floor(index / 9) * 70
-                ballValue: (index % 9) % 2 === 0 ? (index % 8) : -1
+                ballValue: index % 8 //(index % 9) % 2 === 0 ? (index % 8) : -1
                 ballState: _IDLE //index === fromPos ? _SELECTED : _IDLE
 
                 onClicked: {

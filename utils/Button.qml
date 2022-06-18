@@ -2,6 +2,7 @@ import QtQuick 2.0
 
 Item {
     id: container
+    property string objectName: "button"
 
     width: 200
     height: 50
@@ -29,8 +30,8 @@ Item {
     MouseArea {
         anchors.fill: parent
         onClicked: {
+            console.log("Clicked on ", container.objectName)
             container.clicked()
         }
     }
-
 }
