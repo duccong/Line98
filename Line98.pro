@@ -22,4 +22,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES +=
 
+#QSG_VISUALIZE = overdraw
 

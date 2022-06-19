@@ -24,6 +24,7 @@ Item {
                 width: 50
                 height: 50
                 source: MyScript.getPathBall(index)
+                // asynchronous: true
 
                 x: (index + 1) * 50
                 // NumberAnimation on x {
@@ -58,7 +59,8 @@ Item {
         font.pixelSize: 48
     }
 
-    Button {
+    Button2 {
+        id: startBtn
         anchors.top: title.bottom
         anchors.topMargin: parent.height / 4
         anchors.horizontalCenter: parent.horizontalCenter
@@ -68,6 +70,70 @@ Item {
 
         onClicked: {
             command("StartGame", "")
+        }
+    }
+
+    Button {
+        id: introBtn
+        anchors.top: startBtn.bottom
+        anchors.topMargin: parent.height / 8
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        objectName: "Intro game"
+        textbtn: "Intro game"
+
+        onClicked: {
+            command("IntroGame", "")
+        }
+    }
+
+
+    Item {
+        anchors.top: title.bottom
+        anchors.topMargin: 15
+        anchors.horizontalCenter: parent.horizontalCenter
+
+        width: 50*8 //parent.width
+        height: 50
+
+        ListView {
+            Nulo {
+
+            }
+
+            anchors.fill: parent
+            model: 8
+            orientation: ListView.Horizontal
+            spacing: 25
+            delegate: Item {
+                id: itemBall2
+                width: 50/2
+                height: 50
+
+                clip: true
+
+                Image {
+                    id: ball2
+                    width: 50
+                    height: 50
+                    sourceSize.width: 50
+                    sourceSize.height: 50
+                    // asynchronous: true
+
+                    source: MyScript.getPathBall(index%8)
+                    Component.onCompleted: {
+                    }
+                }
+
+                RotationAnimation {
+                    target: itemBall2
+                    loops: 1000
+                    running: visible
+                    duration: (index % 9 +1) * 500
+                    from: 0
+                    to: 360
+                }
+            }
         }
     }
 

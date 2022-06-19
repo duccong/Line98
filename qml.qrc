@@ -16,5 +16,6 @@
         <file>res/ball_white_light.png</file>
         <file>res/ball_yellow.png</file>
         <file>MyScript.js</file>
+        <file>utils/Button2.qml</file>
     </qresource>
 </RCC>
