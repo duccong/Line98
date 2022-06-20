@@ -9,19 +9,36 @@ Window {
     visible: true
     title: qsTr("Hello World")
 
-    StartGame {
-        id: startGameLayout
-        onCommand: {
-            if (cmd === "StartGame") {
-                startGameLayout.visible = false
-                inGameLayout.visible = true
+
+    // StartGame {
+        // id: startGameLayout
+        // onCommand: {
+            // if (cmd === "StartGame") {
+                // startGameLayout.visible = false
+                // inGameLayout.visible = true
+            // }
+        // }
+    // }
+
+    // InGame {
+        // id: inGameLayout
+        // visible: false
+    // }
+
+    Loader {
+        id: loaderGame
+        anchors.fill: parent
+        source: "qrc:/layouts/StartGame.qml"
+
+        Connections {
+            target: loaderGame.item
+            ignoreUnknownSignals: true
+            onCommand: {
+                if (cmd === "StartGame") {
+                    loaderGame.source = "qrc:/layouts/InGame.qml"
+                }
             }
         }
-    }
-
-    InGame {
-        id: inGameLayout
-        visible: false
     }
 
     Component.onCompleted: console.log("main.qml is created!")

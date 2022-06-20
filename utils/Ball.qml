@@ -28,6 +28,7 @@ Item {
         Text {
             id: ballText
             text: (ball.ballValue)
+            visible: ball.ballValue != -1
             anchors.centerIn: parent
         }
 

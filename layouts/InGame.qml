@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.12
 import QtQml 2.12
 import "../utils"
 import "../MyScript.js" as MyScript
@@ -75,6 +75,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 2
 
+        /*
         MouseArea {
             anchors.fill: parent
 
@@ -101,14 +102,20 @@ Item {
                 }
             }
         }
+        */
 
         Repeater {
             id: ballModel
             model: 9*9
 
             delegate: Ball {
+                // Nulo {
+
+                // }
+
                 id: item
-                visible: ballValue !== -1 && index !== fromPos
+                // visible: ballValue !== -1 && index !== fromPos
+                visible: index !== fromPos
                 x: (index % 9) * 70
                 y: Math.floor(index / 9) * 70
                 ballValue: (index % 9) % 2 === 0 || index > 32 ? (index % 8) : -1
@@ -116,8 +123,35 @@ Item {
 
                 onClicked: {
                     // ballState = ballState === _IDLE ? _SELECTED : _IDLE
+                    /*
                     if (animPos.running) return
                     fromPos = index
+                    */
+                    if (animPos.running) return
+
+                    if (fromPos !== -1) {
+                        let posClicked = index //MyScript.getPosition(r, c)
+                        let to = posClicked
+                        console.log("posClicked:", posClicked)
+                        let from = fromPos
+                        tracks = findShortestPath(from, to)
+                        if (tracks.length > 0) {
+                            toPos = to
+                            // start animation
+                            animPos.duration = Math.min(100,1000/tracks.length)
+                            tracks.pop()
+                            let nextPos = tracks.pop()
+                            animPos.toX = (nextPos % 9) * 70
+                            animPos.toY = Math.floor(nextPos / 9) * 70
+                            animPos.start()
+                        }
+                    } else {
+                        fromPos = index
+                        animPos.fromX = (index % 9) * 70
+                        animPos.fromY = Math.floor(index / 9) * 70
+                    }
+
+
                 }
 
                 Component.onCompleted: {
@@ -150,23 +184,29 @@ Item {
 
             ParallelAnimation {
                 id: animPos
+                property int fromX: 0
+                property int fromY: 0
                 property int toX: 0
                 property int toY: 0
                 property int duration: 100
                 alwaysRunToEnd: true
+                // XAnimator {
                 NumberAnimation {
                     id: animX
                     target: runningBall
                     property: "x"
+                    // from: animPos.fromX
                     to: animPos.toX
                     duration: animPos.duration
                     easing.type: Easing.InOutQuad
                 }
 
+                // YAnimator {
                 NumberAnimation {
                     id: animY
                     target: runningBall
                     property: "y"
+                    // from: animPos.fromY
                     duration: animPos.duration
                     to: animPos.toY
                     easing.type: Easing.InOutQuad
@@ -176,6 +216,8 @@ Item {
                     if (tracks.length > 0) {
                         // start next animation
                         let nextPos = tracks.pop()
+                        animPos.fromX = toX
+                        animPos.fromY = toY
                         animPos.toX = (nextPos % 9) * 70
                         animPos.toY = Math.floor(nextPos / 9) * 70
                         animPos.start()

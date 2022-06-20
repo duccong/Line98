@@ -97,10 +97,9 @@ Item {
         height: 50
 
         ListView {
-            Nulo {
+            // Nulo {
 
-            }
-
+            // }
             anchors.fill: parent
             model: 8
             orientation: ListView.Horizontal
