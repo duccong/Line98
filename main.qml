@@ -94,6 +94,26 @@ Window {
             // }
         // }
     // }
+/*
+    property int rectangleWidth: 100
+    property int rectangleHeight: 100
+    Item {
+        id: root
+        property int rectangleWidth: 50
+        property int rectangleHeight: 50
+        Rectangle {
+            property int rectangleWidth: parent.rectangleWidth
+            width: rectangleWidth
+            height: parent.rectangleHeight
+            color: "RED"
+            Rectangle {
+                width: rectangleWidth / 2
+                height: parent.height //parent.rectangleHeight
+                color: "BLUE"
+            }
+        }
+    }
+*/
 
     Component.onCompleted: console.log("main.qml is created!")
 }
