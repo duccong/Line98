@@ -52,7 +52,7 @@ Item {
                 anchors.fill: parent
                 onClicked: {
                     // reset game
-                    resetGame()
+                    // resetGame()
                 }
             }
 
@@ -118,40 +118,16 @@ Item {
                 visible: index !== fromPos
                 x: (index % 9) * 70
                 y: Math.floor(index / 9) * 70
-                ballValue: (index % 9) % 2 === 0 ? (index % 8) : -1
+                ballValue: (index % 8)
                 ballState: _IDLE //index === fromPos ? _SELECTED : _IDLE
 
                 onClicked: {
+                    return;
                     // ballState = ballState === _IDLE ? _SELECTED : _IDLE
                     /*
                     if (animPos.running) return
                     fromPos = index
                     */
-                    if (animPos.running) return
-
-                    if (fromPos !== -1) {
-                        let posClicked = index //MyScript.getPosition(r, c)
-                        let to = posClicked
-                        console.log("posClicked:", posClicked)
-                        let from = fromPos
-                        tracks = findShortestPath(from, to)
-                        if (tracks.length > 0) {
-                            toPos = to
-                            // start animation
-                            animPos.duration = Math.min(100,1000/tracks.length)
-                            tracks.pop()
-                            let nextPos = tracks.pop()
-                            animPos.toX = (nextPos % 9) * 70
-                            animPos.toY = Math.floor(nextPos / 9) * 70
-                            animPos.start()
-                        }
-                    } else {
-                        fromPos = index
-                        animPos.fromX = (index % 9) * 70
-                        animPos.fromY = Math.floor(index / 9) * 70
-                    }
-
-
                 }
 
                 Component.onCompleted: {
