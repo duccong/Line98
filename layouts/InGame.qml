@@ -127,8 +127,8 @@ Item {
                     if (animPos.running) return
                     fromPos = index
                     */
-                    if (animPos.running) return
 
+                    // if (animPos.running) return
                     if (fromPos !== -1) {
                         let posClicked = index //MyScript.getPosition(r, c)
                         let to = posClicked

@@ -3,6 +3,8 @@ import QtQuick 2.0
 Item {
     id: container
     property string objectName: "button"
+    property var bgColor: "RED"
+    property alias bgRect: bg
 
     width: 200
     height: 50
@@ -13,8 +15,9 @@ Item {
     signal clicked()
 
     Rectangle {
+        id: bg
         anchors.fill: parent
-        color: "RED"
+        color: bgColor
         opacity: 0.5
         border.color: "BLACK"
         radius: 3

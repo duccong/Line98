@@ -12,30 +12,28 @@ Window {
     property int currentLayout: 0
 
 
-    // StartGame {
-        // id: startGameLayout
-        // visible: true //currentLayout === 0
-        // onCommand: {
-            // if (cmd === "StartGame") {
-                // startGameLayout.visible = false
-                // inGameLayout.visible = true
-            // }
-        // }
-    // }
+    StartGame {
+        id: startGameLayout
+        visible: true //currentLayout === 0
+        onCommand: {
+            if (cmd === "StartGame") {
+                startGameLayout.visible = false
+                inGameLayout.visible = true
+            }
+        }
+    }
 
-    // InGame {
-        // id: inGameLayout
-        // visible: false //currentLayout === 1
-    // }
+    InGame {
+        id: inGameLayout
+        visible: false //currentLayout === 1
+    }
 
-    // Intro {
-        // id: introLayout
-        // visible: false //currentLayout === 2
-    // }
-
+    Intro {
+        id: introLayout
+        visible: false //currentLayout === 2
+    }
 
     onCurrentLayoutChanged: {
-        /*
         startGameLayout.visible = false
         inGameLayout.visible = false
         introLayout.visible = false
@@ -48,55 +46,54 @@ Window {
         } else {
             startGameLayout.visible = true
         }
-        */
-        if (currentLayout === 0) {
-            loaderGame.active = false
-            loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
-            loaderGame.active = true
-        } else if (currentLayout === 1) {
-            loaderGame.active = false
-            loaderGame.source = "qrc:/layouts/InGame.qml?"+Math.random()
-            loaderGame.active = true
-        } else if (currentLayout === 2){
-            loaderGame.active = false
-            loaderGame.source = "qrc:/layouts/Intro.qml?"+Math.random()
-            loaderGame.active = true
-        } else {
-            loaderGame.active = false
-            loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
-            loaderGame.active = true
-        }
+        // if (currentLayout === 0) {
+            // loaderGame.active = false
+            // loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
+            // loaderGame.active = true
+        // } else if (currentLayout === 1) {
+            // loaderGame.active = false
+            // loaderGame.source = "qrc:/layouts/InGame.qml?"+Math.random()
+            // loaderGame.active = true
+        // } else if (currentLayout === 2){
+            // loaderGame.active = false
+            // loaderGame.source = "qrc:/layouts/Intro.qml?"+Math.random()
+            // loaderGame.active = true
+        // } else {
+            // loaderGame.active = false
+            // loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
+            // loaderGame.active = true
+        // }
     }
 
-    Loader {
-        id: loaderGame
-        anchors.fill: parent
-        source: "qrc:/layouts/StartGame.qml"
+    // Loader {
+        // id: loaderGame
+        // anchors.fill: parent
+        // source: "qrc:/layouts/StartGame.qml"
 
-        Connections {
-            target: loaderGame.item
-            ignoreUnknownSignals: true
-            onCommand: {
-                if (cmd === "StartGame") {
-                    loaderGame.source = "qrc:/layouts/InGame.qml"
-                }
-            }
-        }
-    }
+        // Connections {
+            // target: loaderGame.item
+            // ignoreUnknownSignals: true
+            // onCommand: {
+                // if (cmd === "StartGame") {
+                    // loaderGame.source = "qrc:/layouts/InGame.qml"
+                // }
+            // }
+        // }
+    // }
 
-    Timer {
-        id: timer
-        interval: 2000
-        running: true
-        repeat: true
-        onTriggered: {
-            currentLayout++
-            if (currentLayout > 2) {
-                currentLayout = 0
-                timer.stop()
-            }
-        }
-    }
+    // Timer {
+        // id: timer
+        // interval: 2000
+        // running: true
+        // repeat: true
+        // onTriggered: {
+            // currentLayout++
+            // if (currentLayout > 2) {
+                // currentLayout = 0
+                // timer.stop()
+            // }
+        // }
+    // }
 
     Component.onCompleted: console.log("main.qml is created!")
 }

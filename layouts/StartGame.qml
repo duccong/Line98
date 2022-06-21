@@ -49,7 +49,6 @@ Item {
             }
     }
 
-
     Text {
         id: title
         anchors.top: parent.top
@@ -59,11 +58,13 @@ Item {
         font.pixelSize: 48
     }
 
-    Button2 {
+    Button {
         id: startBtn
         anchors.top: title.bottom
         anchors.topMargin: parent.height / 4
         anchors.horizontalCenter: parent.horizontalCenter
+        // bgColor: "Cyan"
+        bgRect.color: "Cyan"
 
         objectName: "Start game"
         textbtn: "Start game"
@@ -86,7 +87,6 @@ Item {
             command("IntroGame", "")
         }
     }
-
 
     Item {
         anchors.top: title.bottom
@@ -135,6 +135,5 @@ Item {
             }
         }
     }
-
 
 }
