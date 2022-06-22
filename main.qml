@@ -7,7 +7,7 @@ Window {
     width: 630
     height: 710
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Line 98")
 
     property int currentLayout: 0
 
