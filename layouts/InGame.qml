@@ -75,7 +75,6 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 2
 
-        /*
         MouseArea {
             anchors.fill: parent
 
@@ -102,7 +101,6 @@ Item {
                 }
             }
         }
-        */
 
         Repeater {
             id: ballModel
@@ -114,8 +112,8 @@ Item {
                 // }
 
                 id: item
-                // visible: ballValue !== -1 && index !== fromPos
-                visible: index !== fromPos
+                visible: ballValue !== -1 && index !== fromPos
+                // visible: index !== fromPos
                 x: (index % 9) * 70
                 y: Math.floor(index / 9) * 70
                 ballValue: (index % 9) % 2 === 0 ? (index % 8) : -1
@@ -123,12 +121,10 @@ Item {
 
                 onClicked: {
                     // ballState = ballState === _IDLE ? _SELECTED : _IDLE
-                    /*
-                    if (animPos.running) return
-                    fromPos = index
-                    */
-
                     // if (animPos.running) return
+                    // fromPos = index
+
+                    if (animPos.running) return
                     if (fromPos !== -1) {
                         let posClicked = index //MyScript.getPosition(r, c)
                         let to = posClicked
@@ -190,23 +186,23 @@ Item {
                 property int toY: 0
                 property int duration: 100
                 alwaysRunToEnd: true
-                // XAnimator {
-                NumberAnimation {
+                XAnimator {
+                // NumberAnimation {
                     id: animX
                     target: runningBall
-                    property: "x"
-                    // from: animPos.fromX
+                    // property: "x"
+                    from: animPos.fromX
                     to: animPos.toX
                     duration: animPos.duration
                     easing.type: Easing.InOutQuad
                 }
 
-                // YAnimator {
-                NumberAnimation {
+                YAnimator {
+                // NumberAnimation {
                     id: animY
                     target: runningBall
-                    property: "y"
-                    // from: animPos.fromY
+                    // property: "y"
+                    from: animPos.fromY
                     duration: animPos.duration
                     to: animPos.toY
                     easing.type: Easing.InOutQuad

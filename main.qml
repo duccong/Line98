@@ -12,74 +12,74 @@ Window {
     property int currentLayout: 0
 
 
-    StartGame {
-        id: startGameLayout
-        visible: true //currentLayout === 0
-        onCommand: {
-            if (cmd === "StartGame") {
-                startGameLayout.visible = false
-                inGameLayout.visible = true
-            }
-        }
-    }
-
-    InGame {
-        id: inGameLayout
-        visible: false //currentLayout === 1
-    }
-
-    Intro {
-        id: introLayout
-        visible: false //currentLayout === 2
-    }
-
-    onCurrentLayoutChanged: {
-        startGameLayout.visible = false
-        inGameLayout.visible = false
-        introLayout.visible = false
-        if (currentLayout === 0) {
-            startGameLayout.visible = true
-        } else if (currentLayout === 1) {
-            inGameLayout.visible = true
-        } else if (currentLayout === 2){
-            introLayout.visible = true
-        } else {
-            startGameLayout.visible = true
-        }
-        // if (currentLayout === 0) {
-            // loaderGame.active = false
-            // loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
-            // loaderGame.active = true
-        // } else if (currentLayout === 1) {
-            // loaderGame.active = false
-            // loaderGame.source = "qrc:/layouts/InGame.qml?"+Math.random()
-            // loaderGame.active = true
-        // } else if (currentLayout === 2){
-            // loaderGame.active = false
-            // loaderGame.source = "qrc:/layouts/Intro.qml?"+Math.random()
-            // loaderGame.active = true
-        // } else {
-            // loaderGame.active = false
-            // loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
-            // loaderGame.active = true
-        // }
-    }
-
-    // Loader {
-        // id: loaderGame
-        // anchors.fill: parent
-        // source: "qrc:/layouts/StartGame.qml"
-
-        // Connections {
-            // target: loaderGame.item
-            // ignoreUnknownSignals: true
-            // onCommand: {
-                // if (cmd === "StartGame") {
-                    // loaderGame.source = "qrc:/layouts/InGame.qml"
-                // }
+    // StartGame {
+        // id: startGameLayout
+        // visible: true //currentLayout === 0
+        // onCommand: {
+            // if (cmd === "StartGame") {
+                // startGameLayout.visible = false
+                // inGameLayout.visible = true
             // }
         // }
     // }
+
+    // InGame {
+        // id: inGameLayout
+        // visible: false //currentLayout === 1
+    // }
+
+    // Intro {
+        // id: introLayout
+        // visible: false //currentLayout === 2
+    // }
+
+    onCurrentLayoutChanged: {
+        // startGameLayout.visible = false
+        // inGameLayout.visible = false
+        // introLayout.visible = false
+        // if (currentLayout === 0) {
+            // startGameLayout.visible = true
+        // } else if (currentLayout === 1) {
+            // inGameLayout.visible = true
+        // } else if (currentLayout === 2){
+            // introLayout.visible = true
+        // } else {
+            // startGameLayout.visible = true
+        // }
+        if (currentLayout === 0) {
+            loaderGame.active = false
+            loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
+            loaderGame.active = true
+        } else if (currentLayout === 1) {
+            loaderGame.active = false
+            loaderGame.source = "qrc:/layouts/InGame.qml?"+Math.random()
+            loaderGame.active = true
+        } else if (currentLayout === 2){
+            loaderGame.active = false
+            loaderGame.source = "qrc:/layouts/Intro.qml?"+Math.random()
+            loaderGame.active = true
+        } else {
+            loaderGame.active = false
+            loaderGame.source = "qrc:/layouts/StartGame.qml?"+Math.random()
+            loaderGame.active = true
+        }
+    }
+
+    Loader {
+        id: loaderGame
+        anchors.fill: parent
+        source: "qrc:/layouts/StartGame.qml"
+
+        Connections {
+            target: loaderGame.item
+            ignoreUnknownSignals: true
+            onCommand: {
+                if (cmd === "StartGame") {
+                    loaderGame.source = "qrc:/layouts/InGame.qml"
+                }
+            }
+        }
+    }
 
     // Timer {
         // id: timer

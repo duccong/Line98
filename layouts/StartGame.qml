@@ -58,13 +58,13 @@ Item {
         font.pixelSize: 48
     }
 
-    Button2 {
+    Button {
         id: startBtn
         anchors.top: title.bottom
         anchors.topMargin: parent.height / 4
         anchors.horizontalCenter: parent.horizontalCenter
         // bgColor: "Cyan"
-        // bgRect.color: "Cyan"
+        bgRect.color: "Cyan"
 
         objectName: "Start game"
         textbtn: "Start game"
